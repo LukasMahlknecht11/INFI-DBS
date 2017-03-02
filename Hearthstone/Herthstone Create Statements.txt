@@ -1,0 +1,40 @@
+DROP database IF EXISTS Hearthstone;
+CREATE database IF NOT EXISTS Hearthstone;
+USE Hearthstone;
+
+CREATE TABLE classes
+(
+	classID INT NOT NULL,
+	name VARCHAR(15) NOT NULL,
+	health INT NOT NULL,
+	heropower VARCHAR(15) NOT NULL,
+	PRIMARY KEY(classID)
+);
+
+CREATE TABLE deck
+(
+	deckID INT NOT NULL,
+	name VARCHAR(15) NOT NULL,
+	classID INT NOT NULL,
+	PRIMARY KEY(deckID),
+	FOREIGN KEY(classID) REFERENCES classes(classID) ON DELETE CASCADE
+);
+
+CREATE TABLE cardsindecks
+(
+	deckID INT NOT NULL,
+	cardID INT NOT NULL,
+	PRIMARY KEY(deckID, cardID),
+	FOREIGN KEY(deckID) REFERENCES deck(deckID) ON DELETE CASCADE,
+	FOREIGN KEY(cardID) REFERENCES card(cardID) ON DELETE CASCADE
+);
+
+CREATE TABLE card
+(
+	cardID INT NOT NULL,
+	name VARCHAR(30) NOT NULL,
+	mana INT NOT NULL,
+	attack INT NOT NULL,
+	health INT NOT NULL,
+	PRIMARY KEY(cardID)
+);

@@ -1,0 +1,32 @@
+insert into classes(classID, name, health, heropower) values (1, 'Warrior', 30, 'Shield');
+insert into classes(classID, name, health, heropower) values (2, 'Shaman', 30, 'Totem');
+insert into classes(classID, name, health, heropower) values (3, 'Rogue', 30, 'Dagger');
+
+insert into deck(deckID, name, classID) values (1, 'Control', 1);
+insert into deck(deckID, name, classID) values (2, 'NZoth', 1);
+insert into deck(deckID, name, classID) values (3, 'Midrange', 2);
+insert into deck(deckID, name, classID) values (4, 'Totem', 2);
+insert into deck(deckID, name, classID) values (5, 'Miracle', 3);
+insert into deck(deckID, name, classID) values (6, 'StealCards', 3);
+
+insert into card(cardID, name, mana, attack, health) values (1, 'Ragnaros', 8, 8, 8);
+insert into card(cardID, name, mana, attack, health) values (2, 'Baron Geddon', 7, 7, 5);
+insert into card(cardID, name, mana, attack, health) values (3, 'NZoth', 10, 5, 7);
+insert into card(cardID, name, mana, attack, health) values (4, 'Cairne Bloodhoof', 6, 4, 5);
+insert into card(cardID, name, mana, attack, health) values (5, 'Thing From Below', 6, 5, 5);
+insert into card(cardID, name, mana, attack, health) values (6, 'Tuskarr Totemic', 3, 3, 2);
+insert into card(cardID, name, mana, attack, health) values (7, 'Totem Golem', 2, 3, 4);
+insert into card(cardID, name, mana, attack, health) values (8, 'Mana Tide Totem', 3, 0, 3);
+insert into card(cardID, name, mana, attack, health) values (9, 'Kidnapper', 6, 5, 5);
+insert into card(cardID, name, mana, attack, health) values (10, 'SI:7 Agent', 3, 3, 3);
+insert into card(cardID, name, mana, attack, health) values (11, 'Cutpurse', 2, 2, 2);
+insert into card(cardID, name, mana, attack, health) values (12, 'Undercity Valiant', 2, 3, 2);
+
+insert into cardsindecks(deckID, cardID) values (1, 1);
+insert into cardsindecks(deckID, cardID) values (1, 2);
+insert into cardsindecks(deckID, cardID) values (1, 3);
+insert into cardsindecks(deckID, cardID) values (1, 4);
+insert into cardsindecks(deckID, cardID) values (2, 1);
+insert into cardsindecks(deckID, cardID) values (2, 2);
+insert into cardsindecks(deckID, cardID) values (2, 3);
+insert into cardsindecks(deckID, cardID) values (3, 5);

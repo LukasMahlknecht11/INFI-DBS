@@ -1,0 +1,122 @@
+<html>
+ <head>
+	<script>
+function sendData() {
+
+  var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	 if (this.readyState == 4 && this.status == 200) {
+	  document.getElementById("ausgabe").innerHTML = this.responseText;
+    }
+  };
+ 
+  var param1 = "cardID=" + document.getElementById("cardID1").value;
+  var param2 = "&name=" + document.getElementById("name1").value;
+  var param3 = "&mana=" + document.getElementById("mana1").value;
+  var param4 = "&attack=" + document.getElementById("attack1").value;
+  var param5 = "&health=" + document.getElementById("health1").value;
+  var url = "insert.php";
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(param1 + param2 + param3 + param4 + param5);
+  
+  //Felder zurücksetzen
+  document.getElementById("cardID1").value="";
+  document.getElementById("name1").value="";
+  document.getElementById("mana1").value="";
+  document.getElementById("attack1").value="";
+  document.getElementById("health1").value="";
+} 
+
+function readData(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+	  document.getElementById("ausgabe").innerHTML = this.responseText;
+    }
+  };
+ 
+  var url = "read.php";
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send();
+}
+
+function deleteData() {
+
+  var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	 if (this.readyState == 4 && this.status == 200) {
+	  document.getElementById("ausgabe").innerHTML = this.responseText;
+    }
+  };
+ 
+  var param = "cardID=" + document.getElementById("cardID2").value;
+  var url = "delete.php";
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(param);
+  
+  document.getElementById("cardID2").value="";
+} 
+
+function updateData() {
+
+  var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	 if (this.readyState == 4 && this.status == 200) {
+	  document.getElementById("ausgabe").innerHTML = this.responseText;
+    }
+  };
+ 
+  var param1 = "cardID=" + document.getElementById("cardID3").value;
+  var param2 = "&name=" + document.getElementById("name3").value;
+  var param3 = "&mana=" + document.getElementById("mana3").value;
+  var param4 = "&attack=" + document.getElementById("attack3").value;
+  var param5 = "&health=" + document.getElementById("health3").value;
+  var url = "update.php";
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(param1 + param2 + param3 + param4 + param5);
+  
+  document.getElementById("cardID3").value ="";
+  document.getElementById("name3").value ="";
+  document.getElementById("mana3").value ="";
+  document.getElementById("attack3").value ="";
+  document.getElementById("health3").value ="";
+} 
+
+window.onload=function(){
+	readData();
+	window.setInterval(readData,6000);
+}
+	</script>
+</head>
+
+<body>
+	<b>add a card:</b><br/>
+	cardID: <input type="int" id="cardID1"></input><b> | </b>
+	name: <input type="text" id="name1"></input><b> | </b>
+	mana: <input type="int" id="mana1"></input><b> | </b>
+	attack: <input type="int" id="attack1"></input><b> | </b>
+	health: <input type="int" id="health1"></input><br/>
+	<button onclick="sendData();">add</button><br/>
+	<hr>
+	<b>delete a card by cardID:</b><br/>
+	cardID:<br/><input type="int" id="cardID2"></input><br/>
+	<button onclick="deleteData();">delete</button><br/>
+	<hr>
+	<b>update a card by cardID:</b><br/>
+	cardID: <input type="int" id="cardID3"></input><b> | </b>
+	name: <input type="text" id="name3"></input><b> | </b>
+	mana: <input type="int" id="mana3"></input><b> | </b>
+	attack: <input type="int" id="attack3"></input><b> | </b>
+	health: <input type="int" id="health3"></input><br/>
+	<button onclick="updateData();">update</button><br/>
+<div>
+	<pre>
+	<p id="ausgabe"></p>
+	</pre>
+</div>
+</body>
+</html> 

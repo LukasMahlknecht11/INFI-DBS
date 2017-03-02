@@ -1,0 +1,3 @@
+card(cardID, name, mana, attack, health)
+classes(classID, name, health, heropower, deckID)
+deck(deckID, name, cardID)
