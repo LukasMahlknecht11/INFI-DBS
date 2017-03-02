@@ -1,0 +1,14 @@
+						INFI-DBS
+Mein PC:
+cmd:
+
+Starten des Servers:
+cd d:\Programme\mysql\bin
+d: 			// um auf richtiges speichermedium zu wechseln
+mysqld
+
+Client:
+cd d:\Programme\mysql\bin
+d:
+mysql -uroot
+UNI Datenbank einfügen;

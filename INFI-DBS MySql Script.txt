@@ -1,0 +1,165 @@
+						INFI-DBS
+Mein PC:
+cmd:
+
+Starten des Servers:
+cd d:\Programme\mysql\bin
+d: 			// um auf richtiges speichermedium zu wechseln
+mysqld
+
+Client:
+cd d:\Programme\mysql\bin
+d:
+mysql -uroot
+UNI Datenbank einfügen;
+
+Schul Computer:
+cmd:
+
+Starten des Servers:
+cd c:\xampp\mysql\bin
+mysqld
+
+Client:
+cd c:\xampp\mysql\bin
+mysql -uroot
+UNI Datenbank einfügen;
+
+---------------------------------------------------------
+Sql datei öffnen:
+mysql -uroot -t < Pfad
+-> Befehle werden an das Programm beim Aufruf übergeben
+
+Wenn Leerzeichen im Pfad -> Pfad in Hochkomma schreiben! "Pfad" !!!
+----------------------------------------------------------
+
+
+// Zeigt alle DB an die im DBMS verfügbar sind
+SHOW DATABASES;
+
+// Welche Datenbank soll ausgewählt werden
+USE 
+*uni;
+
+// Welche Tabellen sind in der Datenbank vorhanden
+SHOW TABLES;
+
+-----------------------------
+° Wichtige Schlüsselwörter		SELECT & FROM
+*... alle Spalten werden ausgewählt
+SELECT * FROM [tablename];
+	für Abfrage von 1 Spalte, Spaltenname angeben
+mehrere Spalten: durch beistrich getrennt
+
+-desc [tabellenname]
+-> beschreibt die Tabelle ohne die Daten selber auszugeben
+-> sinvoll bei z.b. Millionen von Einträgen
+
+varchar == string (mit maximal 100 Zeichen)
+
+° SELECT FROM WHERE
+where: gibt die Bedingungen an
+z.b. SELECT * FROM [tablename] WHERE [spaltenname] =/>/</...x
+
+Zeichenketten mit einfachem Hochkomma, z.b. 'C4' !!!
+
+Logische Verknüpfungen: ausschreiben! (and, or)
+- Suche nach Buchstaben, Wörtern:
+	SELECT * FROM [tablename] WHERE [spaltenname] LIKE 's%';
+	%... steht für beliebige Zeichen
+	-> Anfangsbuchstabe
+	-> irgend ein Buchstabe:
+		WHERE [spaltenname] LIKE '%s%';
+	_... steht für 1 beliebiges Zeichen
+
+
+
+// hinzufügen von Personen/Dingen/...
+INSERT INTO Studenten (MatrNr, Name, Semester) 
+VALUES (1000, 'Maier', 1);
+
+INSERT INTO Studenten 
+VALUES (1001, 'Herbert', 1);
+
+INSERT INTO Studenten (Name, MatrNr, Semester) 
+VALUES ('Maier', 1000, 1);
+
+INSERT INTO Studenten 
+VALUES (1002, 'Hubert', 1) , (1003, 'Ferdinand', 1);
+
+INSERT INTO Professoren (PersNr, Name)
+VALUES (2000, 'Kierkegaard');
+
+// bestehende Einträge abändern
+Professoren SET Rang = 'C3'
+WHERE PersNr = 2000;
+
+UPDATE Professoren SET Rang = 'C3', Raum = 'A205'
+WHERE PersNr = 2000;
+
+// Einen Eintrag löschen
+DELETE FROM Professoren
+WHERE Name = 'Kant';
+
+
+
+
+Mehrere Tabellen:
+
+
+select * from [tablename], [tablename];
+gibt alle möglichen Kombinationen aus -> Kartesisches Produkt
+Sinn: große Menge an Testdaten.
+für Abfrage nicht sehr geeignet.
+
+-> Relationen herstellen zwischen den einzelnen Felder von den Spalten ( zb Professoren.persNr und Vorlesungen.gelesen_von )
+
+SELECT * FROM Professoren, Vorlesungen WHERE Professoren.persNr = Vorlesungen.gelesen_von;
+(Felder gleichsetzen)
+
+SELECT Professoren.Name, Vorlesungen.Titel, Vorlesungen.SWS FROM Professoren, Vorlesungen WHERE Professoren.persNr = Vorlesungen.gelesen_von;
+(Tabellenname kann weckgelassen werden wenn Spaltenname nur einmal vorhanden)
+
+SELECT Assistenten.Name, Professoren.Name FROM Assistenten, Professoren WHERE persNr = Boss;
+
+SELECT Assistenten.Name AS "Assistenten_Name", Professoren.Name AS "Professoren_Name" FROM Assistenten, Professoren WHERE persNr = Boss;
+
+SELECT Name,Titel FROM Vorlesungen, Studenten, hoeren WHERE Vorlesungen.VorlNr = hoeren.VorlNr AND Studenten.MatrNr = hoeren.MatrNr;
+
+
+SELECT Name,Titel FROM Vorlesungen, Studenten, hoeren WHERE Vorlesungen.VorlNr = hoeren.VorlNr AND Studenten.MatrNr = hoeren.MatrNr AND Titel LIKE 'G%';
+
+-----------------------------------------------------
+
+SELECT count(*) FROM employees;
+// zeigt an wieviel daten drin sind
+
+SELECT * FROM departments;
+
+SELECT * FROM dept_emp limit 10;
+// setzt ein limit für die angezeigte menge
+
+DESC dept_emp;
+// describe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
